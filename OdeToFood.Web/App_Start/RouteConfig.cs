@@ -16,8 +16,11 @@ namespace OdeToFood.Web
 
             routes.MapRoute(
                 name: "Default",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                url: "{controller}/{action}/{Id}",
+                defaults: new { controller = "Home", action = "Index", Id = UrlParameter.Optional }
+                //using query string with key values. 
+                //url: "{controller}/{action}/{key}",
+                //defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
         }
     }
