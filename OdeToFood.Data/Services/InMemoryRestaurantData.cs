@@ -20,11 +20,14 @@ namespace OdeToFood.Data.Services
         
         }
 
+        public Restaurant Get(int id)
+        {
+            return restaurants.FirstOrDefault(r => r.id == id);
+        }
+
         public IEnumerable<Restaurant> GetAll()
         {
             return restaurants.OrderBy(r => r.Name);
-
-            //throw new NotImplementedException();
         }
     }
 }
