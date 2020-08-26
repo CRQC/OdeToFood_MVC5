@@ -20,6 +20,17 @@ namespace OdeToFood.Data.Services
         
         }
 
+        public void Update(Restaurant restaurant) {
+
+            var existing = Get(restaurant.Id);
+            if (existing != null)
+            {
+                existing.Name = restaurant.Name;
+                existing.Cuisine = restaurant.Cuisine;
+            }
+        }
+
+
         public void Add(Restaurant restaurant) 
         {
             restaurants.Add(restaurant);
@@ -36,7 +47,9 @@ namespace OdeToFood.Data.Services
             return restaurants.OrderBy(r => r.Name);
         }
 
-        //public Restaurant Update()
+
+
+
 
 
     }
