@@ -13,27 +13,47 @@ namespace OdeToFood.Data.Services
 
             restaurants = new List<Restaurant>()
             {
-                new Restaurant { id = 1, Name = "Scott's Pizza", Cuisine = CuisineType.Italian},
-                new Restaurant { id = 2, Name = "Tersiguels", Cuisine = CuisineType.Indian},
-                new Restaurant { id = 3, Name = "Mango Grove", Cuisine = CuisineType.French}
+                new Restaurant { Id = 1, Name = "Scott's Pizza", Cuisine = CuisineType.Italian},
+                new Restaurant { Id = 2, Name = "Tersiguels", Cuisine = CuisineType.Indian},
+                new Restaurant { Id = 3, Name = "Mango Grove", Cuisine = CuisineType.French}
             };
         
         }
 
+        public void Update(Restaurant restaurant) {
+
+            var existing = Get(restaurant.Id);
+            if (existing != null)
+            {
+                existing.Name = restaurant.Name;
+                existing.Cuisine = restaurant.Cuisine;
+            }
+        }
+
+
         public void Add(Restaurant restaurant) 
         {
             restaurants.Add(restaurant);
-            restaurant.id = restaurants.Max(x => x.id) + 1;
+            restaurant.Id = restaurants.Max(x => x.Id) + 1;
         }
 
         public Restaurant Get(int id)
         {
-            return restaurants.FirstOrDefault(r => r.id == id);
+            return restaurants.FirstOrDefault(r => r.Id == id);
         }
 
         public IEnumerable<Restaurant> GetAll()
         {
             return restaurants.OrderBy(r => r.Name);
+        }
+
+        public void Delete(int id)
+        {
+            var restaurant = Get(id);
+            if (restaurant != null)
+            {
+                restaurants.Remove(restaurant);
+            }
         }
     }
 }
